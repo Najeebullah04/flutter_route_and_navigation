@@ -1,70 +1,53 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    title: 'Navigation Basics',
+    home: FirstRoute(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Flutter Routing and Navigation",
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class FirstRoute extends StatelessWidget {
+  const FirstRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Navigation and Routing "),
+        title: const Text('First Route'),
       ),
-       body: Center(
+      body: Center(
         child: ElevatedButton(
-          child: const Text('Open second widget'),
+          child: const Text('Open route'),
           onPressed: () {
-              Navigator.push(
-                context, MaterialPageRoute(builder: 
-                (context)=>MySecondWidget()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SecondRoute()),
+            );
           },
         ),
       ),
     );
   }
-} 
+}
 
-class MySecondWidget extends StatelessWidget {
-  const MySecondWidget({super.key});
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Navigation and Routing "),
+        title: const Text('Second Route'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            // Navigate back to first route when tapped.
-         Navigator.pop(context);
+            Navigator.pop(context);
           },
           child: const Text('Go back!'),
         ),
-      ),      
-
+      ),
     );
   }
 }
-
-
-
